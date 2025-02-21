@@ -20,7 +20,15 @@ public class MessageService {
 	public List<Message> getAllPreviousMessage() {
 		return MessageRepository.findAll();
 	}
+	
+	public List<Message> getAllPreviousMessageByUsername(String username) {
+		return MessageRepository.findAll().stream().filter(m -> m.getUsername().trim().toLowerCase().equals(username)).toList();
+	}
 
+	public List<String> getAllUsers() {
+		return MessageRepository.findAll().stream().map(Message::getUsername).distinct().toList();
+	}
+	
 	public void saveMessage(Message message) {
 		MessageRepository.save(message);
 	}

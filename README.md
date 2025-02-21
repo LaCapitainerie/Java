@@ -24,3 +24,7 @@ This is a Java project that uses Spring Boot and Docker.
 ## Running the Project
 
 Run the Spring Boot application
+
+## Location
+
+Application running on port 8080, on the URL http://localhost:8080/chat

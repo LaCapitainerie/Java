@@ -26,6 +26,14 @@ public class MessageController {
 	@GetMapping
 	public String getRandomMessage(Model model) {
 		model.addAttribute("messages", MessageService.getAllPreviousMessage());
+		model.addAttribute("users", MessageService.getAllUsers());
+		return "chat";
+	}
+
+	@GetMapping("/{users}")
+	public String getMessages(@PathVariable String users, Model model) {
+		model.addAttribute("messages", MessageService.getAllPreviousMessageByUsername(users));
+		model.addAttribute("users", MessageService.getAllUsers());
 		return "chat";
 	}
 
@@ -40,6 +48,7 @@ public class MessageController {
 		m.setUpdated_at(java.time.LocalDateTime.now().format(dtf));
 		MessageService.saveMessage(m);
 		model.addAttribute("messages", MessageService.getAllPreviousMessage());
+		model.addAttribute("users", MessageService.getAllUsers());
 		return "chat";
 	}
 
